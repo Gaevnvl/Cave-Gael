@@ -1,9 +1,20 @@
-
 import { useEffect, useState } from "react";
 
 const Airtable_API_KEY = "patOIYkgCUGq3NeCt.7ccae77cead1c9c758644870cf18ffaa82b89b131b8dd64a945608344ef7c07b";
 const BASE_ID = "appdQVQxbkXnm7gjR";
 const TABLE_NAME = "Table Bouteilles";
+
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
 
 export default function Home() {
   const [bouteille, setBouteille] = useState(null);
@@ -45,9 +56,9 @@ export default function Home() {
           <p><strong>Millésime :</strong> {bouteille["Millésime"]}</p>
           <p><strong>Apogée :</strong> {bouteille["Apogée"]}</p>
           <p><strong>Quantité en cave :</strong> {bouteille["Quantité en cave"]}</p>
-          <p><strong>Valeur estimée :</strong> {bouteille["Valeur estimée (€)"]} €</p>
+          <p><strong>Valeur estimée totale :</strong> {bouteille["Quantité en cave"] * bouteille["Valeur estimée (€)"]} €</p>
           <p><strong>Emplacement :</strong> {bouteille["Emplacement"]}</p>
-          <p><strong>Dernier mouvement :</strong> {bouteille["Dernier mouvement (type)"]} — {bouteille["Dernier mouvement (date)"]}</p>
+          <p><strong>Dernier mouvement :</strong> {bouteille["Dernier mouvement (type)"]} — {formatDate(bouteille["Dernier mouvement (date)"])}</p>
           <p><strong>Dernière note :</strong> {bouteille["Dernière note"]}</p>
         </div>
       )}
