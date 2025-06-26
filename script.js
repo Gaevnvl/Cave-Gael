@@ -7,7 +7,7 @@ if (!code) {
 } else {
   fetch(`https://api.airtable.com/v0/appdQVQxbkXnm7gjR/Table%20Bouteilles?filterByFormula={Code%20Bouteille}='${code}'`, {
     headers: {
-      Authorization: "Bearer YOUR_API_KEY"
+      Authorization: "Bearer patOIYkgCUGq3NeCt.9cb9723b95bd50a90d35fc93e25e5b5c49ef7de9b3ade2905199bb3b4756e2b3
     }
   })
   .then(res => res.json())
